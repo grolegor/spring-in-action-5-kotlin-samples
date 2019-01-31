@@ -9,4 +9,3 @@ class TacoCloudApplication
 fun main(args: Array<String>) {
     runApplication<TacoCloudApplication>(*args)
 }
-
