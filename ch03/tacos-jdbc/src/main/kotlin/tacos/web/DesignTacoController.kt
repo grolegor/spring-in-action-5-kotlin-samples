@@ -1,5 +1,6 @@
 package tacos.web
 
+import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -10,25 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import tacos.Ingredient
 import tacos.Taco
+import tacos.data.IngredientRepository
 
 @Controller
 @RequestMapping("/design")
-class DesignTacoController {
+class DesignTacoController @Autowired constructor(val ingredientRepo: IngredientRepository) {
 
     @ModelAttribute
     fun addInrgedientsToModel(model: Model) {
-        val ingredients = listOf(
-            Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-            Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
-            Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
-            Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
-            Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
-            Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
-            Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
-            Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
-            Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
-            Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
-        )
+        val ingredients = ingredientRepo.findAll()
         Ingredient.Type.values().forEach { type ->
             model.addAttribute(type.toString().toLowerCase(),
                 ingredients.filter { it.type == type })
