@@ -4,5 +4,5 @@ import tacos.Taco
 
 interface TacoRepository {
 
-    fun save(design: Taco): Taco
+    fun save(taco: Taco): Taco
 }

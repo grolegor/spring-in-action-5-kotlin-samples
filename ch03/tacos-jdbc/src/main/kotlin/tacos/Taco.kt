@@ -15,5 +15,5 @@ data class Taco(
     var name: String? = null,
 
     @field: Size(min = 1, message = "You must choose at least 1 ingredient")
-    var ingredients: List<String>? = null
+    var ingredients: List<Ingredient>? = null
 )

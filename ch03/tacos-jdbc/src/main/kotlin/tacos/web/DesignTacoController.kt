@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 import tacos.Ingredient
 import tacos.Taco
 import tacos.data.IngredientRepository
+import tacos.data.TacoRepository
 
 @Controller
 @RequestMapping("/design")
-class DesignTacoController @Autowired constructor(val ingredientRepo: IngredientRepository) {
+class DesignTacoController @Autowired constructor(
+    val ingredientRepo: IngredientRepository,
+    val tacoRepo: TacoRepository
+) {
 
     @ModelAttribute
     fun addInrgedientsToModel(model: Model) {
@@ -35,7 +39,7 @@ class DesignTacoController @Autowired constructor(val ingredientRepo: Ingredient
     @PostMapping
     fun processDesign(@Valid @ModelAttribute("design") design: Taco, errors: Errors): String {
         if (errors.hasErrors()) return "design"
-        println("Processing design: $design")
+        tacoRepo.save(taco = design)
         return "redirect:/orders/current"
     }
 }
