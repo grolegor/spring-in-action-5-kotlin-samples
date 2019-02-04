@@ -21,6 +21,7 @@ class JdbcTacoRepository @Autowired constructor(private val jdbc: JdbcTemplate) 
     override fun save(taco: Taco): Taco {
         taco.createdAt = Date()
         val tacoId: Long = saveTacoDetails(taco)
+        taco.id = tacoId
         taco.ingredients?.forEach { ingredient -> saveIngredientToTaco(ingredient, tacoId) }
         return taco
     }
