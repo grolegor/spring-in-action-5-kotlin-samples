@@ -8,24 +8,26 @@ import java.util.*
 
 data class Order(
 
+    var tacos: MutableList<Taco> = mutableListOf(),
+
     var id: Long? = null,
 
     var placedAt: Date? = null,
 
     @field: NotBlank(message = "Name is required")
-    var name: String? = null,
+    var deliveryName: String? = null,
 
     @field: NotBlank(message = "Street is required")
-    var street: String? = null,
+    var deliveryStreet: String? = null,
 
     @field: NotBlank(message = "City is required")
-    var city: String? = null,
+    var deliveryCity: String? = null,
 
     @field: NotBlank(message = "State is required")
-    var state: String? = null,
+    var deliveryState: String? = null,
 
     @field: NotBlank(message = "Zip code is required")
-    var zip: String? = null,
+    var deliveryZip: String? = null,
 
     @field: CreditCardNumber(message = "Not a valid credit card number")
     var ccNumber: String? = null,

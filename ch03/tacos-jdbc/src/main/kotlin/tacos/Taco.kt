@@ -8,7 +8,7 @@ data class Taco(
 
     var id: Long? = null,
 
-    var placedAt: Date? = null,
+    var createdAt: Date? = null,
 
     @field: NotNull
     @field: Size(min = 5, message = "Name must be at least 5 characters long")
